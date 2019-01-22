@@ -35,7 +35,9 @@ extension APIManager {
         let parameters = defaultParams.merging(params) { $1 }
         Network.request(method: method, url: url,
                         params: parameters, parameterEncoding: encoding,
-                        headers: headers, completion: completion)
+                        headers: headers) { response in
+            completion(verify(response: response))
+        }
     }
 }
 
@@ -44,5 +46,39 @@ extension APIManager {
     enum Response<Type> {
         case success(value: Type)
         case failure(error: NSError)
+    }
+    
+    private enum Status: String {
+        case ok
+        case error
+    }
+    
+    private static func verify(response: Network.Response) -> Network.Response {
+        switch response.result {
+        case .failure(_):
+            return response
+        case .success(let value):
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: value, options: .allowFragments) as? [String: Any],
+                    let status = Status(rawValue: json["status"] as? String ?? "")
+                else {
+                    return Network.Response(request: response.request,
+                                            response: response.response,
+                                            result: Network.Response.Result.failure(error: NSError.error(message: "Invalid response!")))
+                }
+                
+                if status == .error {
+                    let message = json["message"] as? String ?? ""
+                    return Network.Response(request: response.request,
+                                            response: response.response,
+                                            result: Network.Response.Result.failure(error: NSError.error(message: message)))
+                }
+                return response
+            } catch {
+                return Network.Response(request: response.request,
+                                        response: response.response,
+                                        result: Network.Response.Result.failure(error: NSError.error(message: error.localizedDescription)))
+            }
+        }
     }
 }
