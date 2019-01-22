@@ -22,7 +22,7 @@ struct APIManager {
 extension APIManager {
     static func endpoint(path: String, _ arguments: CVarArg...) -> String {
         var components = URLComponents(string: Constant.StringURL.root)
-        components?.path = String(format: path, arguments)
+        components?.path = String(format: path, arguments: arguments)
         return components?.url?.absoluteString ?? ""
     }
 }
