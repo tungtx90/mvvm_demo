@@ -24,7 +24,7 @@ class NetworkTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
     }
     
     func testFailedResponse() {
@@ -39,7 +39,7 @@ class NetworkTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
     }
     
     func testCancelingResponse() {

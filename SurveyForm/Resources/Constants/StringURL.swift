@@ -22,6 +22,7 @@ extension Constant {
         }
         
         static let apiKey = "cbcbd6968df941c8b2e00f4b4da9c48b"
+        static let timeoutInterval: TimeInterval = 5.0
     }
 }
 
