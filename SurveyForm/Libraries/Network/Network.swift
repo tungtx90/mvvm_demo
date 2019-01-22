@@ -44,18 +44,19 @@ extension Network {
 
 // MARK: - Request
 extension Network {
+    @discardableResult
     static func request(method: HTTPMethod, url: String,
                         params: Params, parameterEncoding: ParameterEncoding? = nil,
-                        headers: [String: String] = [:], completion: @escaping (Response) -> Void) {
+                        headers: [String: String] = [:], completion: @escaping (Response) -> Void) -> URLSessionDataTask? {
         guard let request = setupRequest(method: method, url: url,
                                          params: params, parameterEncoding: parameterEncoding, headers: headers)
         else {
             let result = Response.Result.failure(error: NSError.error(message: "Cannot create request!"))
             completion(Response(request: nil, response: nil, result: result))
-            return
+            return nil
         }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 let result: Response.Result = Response.Result.failure(error: error as NSError)
                 completion(Response(request: request, response: response as? HTTPURLResponse, result: result))
@@ -70,7 +71,10 @@ extension Network {
             
             let result: Response.Result = Response.Result.success(value: data)
             completion(Response(request: request, response: response as? HTTPURLResponse, result: result))
-        }.resume()
+        }
+        dataTask.resume()
+        
+        return dataTask
     }
     
     private static func setupRequest(method: HTTPMethod, url: String,
