@@ -15,3 +15,11 @@ struct NewSource {
 
 // MARK: - Decodable
 extension NewSource: Decodable {}
+
+// MARK: - Equatable
+extension NewSource: Equatable {
+    static func ==(lhs: NewSource, rhs: NewSource) -> Bool {
+        return lhs.id == rhs.id &&
+            lhs.name == rhs.name
+    }
+}
