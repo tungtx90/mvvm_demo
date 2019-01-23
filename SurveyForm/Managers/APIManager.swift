@@ -14,7 +14,7 @@ struct APIManager {
     static let headers: [String: String] = [:]
     
     static let defaultParams: [String: Any] = [
-        "apiKey": Constant.StringURL.apiKey
+        "apiKey": Constant.apiKey
     ]
 }
 

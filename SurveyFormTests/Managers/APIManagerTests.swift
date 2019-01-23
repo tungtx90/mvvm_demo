@@ -34,7 +34,7 @@ class APIManagerTests: XCTestCase {
         var expectedURLComponents = URLComponents(string: url)
         let queryItems: [URLQueryItem] = [
             "country": "us",
-            "apiKey": Constant.StringURL.apiKey
+            "apiKey": Constant.apiKey
         ].map { URLQueryItem(name: $0.key, value: $0.value) }
         expectedURLComponents?.queryItems = queryItems
         
@@ -58,7 +58,7 @@ class APIManagerTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
     
     func testSuccessfulResponse() {
@@ -76,7 +76,7 @@ class APIManagerTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
     
     func testErrorResponse() {
@@ -92,6 +92,6 @@ class APIManagerTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
 }

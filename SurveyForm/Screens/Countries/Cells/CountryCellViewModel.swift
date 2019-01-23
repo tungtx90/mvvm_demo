@@ -17,3 +17,11 @@ struct CountryCellViewModel {
         code = country.code
     }
 }
+
+// MARK: - Equatable
+extension CountryCellViewModel: Equatable {
+    static func ==(lhs: CountryCellViewModel, rhs: CountryCellViewModel) -> Bool {
+        return lhs.code == rhs.code &&
+            lhs.name.value == rhs.name.value
+    }
+}

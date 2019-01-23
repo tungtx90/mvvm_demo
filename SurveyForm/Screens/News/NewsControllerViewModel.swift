@@ -19,11 +19,12 @@ extension NewsControllerViewModel: TableViewModel {
         return 1
     }
     
-    func numberOfRow(in section: Int) -> Int {
+    func numberOfRow(inSection section: Int) -> Int {
         return newCellViewModels.count
     }
     
-    func cellViewModel(at indexPath: IndexPath) -> NewCellViewModel {
+    func cellViewModel(at indexPath: IndexPath) -> NewCellViewModel? {
+        guard (0..<newCellViewModels.count).contains(indexPath.row) else { return nil }
         return newCellViewModels[indexPath.row]
     }
 }

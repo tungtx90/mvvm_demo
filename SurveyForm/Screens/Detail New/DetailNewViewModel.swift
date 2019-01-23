@@ -17,3 +17,11 @@ struct DetailNewViewModel {
         content = new.content ?? ""
     }
 }
+
+// MARK: - Equatable
+extension DetailNewViewModel: Equatable {
+    static func ==(lhs: DetailNewViewModel, rhs: DetailNewViewModel) -> Bool {
+        return lhs.header == rhs.header &&
+            lhs.content == rhs.content
+    }
+}

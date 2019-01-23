@@ -88,7 +88,7 @@ extension Network {
         var request = URLRequest(url: requestURL)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        request.timeoutInterval = Constant.StringURL.timeoutInterval
+        request.timeoutInterval = Constant.timeoutInterval
         
         switch method {
         case .get:

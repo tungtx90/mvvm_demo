@@ -12,6 +12,6 @@ protocol TableViewModel {
     associatedtype ViewModelType
     
     var numberOfSection: Int { get }
-    func numberOfRow(in section: Int) -> Int
-    func cellViewModel(at indexPath: IndexPath) -> ViewModelType
+    func numberOfRow(inSection section: Int) -> Int
+    func cellViewModel(at indexPath: IndexPath) -> ViewModelType?
 }

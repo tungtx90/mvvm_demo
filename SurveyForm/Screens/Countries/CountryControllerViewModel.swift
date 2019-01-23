@@ -32,11 +32,12 @@ extension CountryControllerViewModel: TableViewModel {
         return 1
     }
     
-    func numberOfRow(in section: Int) -> Int {
+    func numberOfRow(inSection section: Int) -> Int {
         return countries.count
     }
     
-    func cellViewModel(at indexPath: IndexPath) -> CountryCellViewModel {
+    func cellViewModel(at indexPath: IndexPath) -> CountryCellViewModel? {
+        guard (0..<countries.count).contains(indexPath.row) else { return nil }
         return countries[indexPath.row]
     }
 }

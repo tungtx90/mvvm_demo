@@ -23,7 +23,7 @@ class APIHeadlinesTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
     
     func testValidResponse() {
@@ -38,6 +38,6 @@ class APIHeadlinesTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
 }

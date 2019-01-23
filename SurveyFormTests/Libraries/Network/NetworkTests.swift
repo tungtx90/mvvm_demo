@@ -15,7 +15,7 @@ class NetworkTests: XCTestCase {
         let expectation = XCTestExpectation(description: "testSuccessfulResponse")
         let url = Constant.StringURL.root + Constant.StringURL.Headlines.getTop
         let params: [String: Any] = [
-            "apiKey": Constant.StringURL.apiKey,
+            "apiKey": Constant.apiKey,
             "country": "us"
         ]
         
@@ -24,14 +24,14 @@ class NetworkTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
     
     func testFailedResponse() {
         let expectation = XCTestExpectation(description: "testFailedResponse")
         let url = Constant.StringURL.root + "/test"
         let params: [String: Any] = [
-            "apiKey": Constant.StringURL.apiKey
+            "apiKey": Constant.apiKey
         ]
         
         Network.request(method: .get, url: url, params: params) { (response) in
@@ -39,13 +39,13 @@ class NetworkTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: Constant.StringURL.timeoutInterval)
+        wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
     
     func testCancelingResponse() {
         let url = Constant.StringURL.root + Constant.StringURL.Headlines.getTop
         let params: [String: Any] = [
-            "apiKey": Constant.StringURL.apiKey,
+            "apiKey": Constant.apiKey,
             "country": "us"
         ]
         
