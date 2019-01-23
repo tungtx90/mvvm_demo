@@ -59,6 +59,7 @@ final class NewsViewController: UIViewController {
     }
     
     private func setupTableView() {
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
     }
     
