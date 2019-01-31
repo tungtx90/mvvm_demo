@@ -9,29 +9,20 @@
 import UIKit
 
 final class DetailNewViewController: UIViewController {
-    var newCellViewModel: NewCellViewModel?
+    var viewModel: DetailNewViewModel?
     
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var contentTextView: UITextView!
-    private var detailNewViewModel: DetailNewViewModel? {
-        didSet {
-            fillData()
-        }
-    }
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupData()
+        setupUI()
     }
     
     // MARK: - Private
-    private func setupData() {
-        detailNewViewModel = newCellViewModel?.detailNewViewModel
-    }
-    
-    private func fillData() {
-        guard let detailNewViewModel = detailNewViewModel else { return }
+    private func setupUI() {
+        guard let detailNewViewModel = viewModel else { return }
         headerLabel.text = detailNewViewModel.header
         contentTextView.text = detailNewViewModel.content
     }

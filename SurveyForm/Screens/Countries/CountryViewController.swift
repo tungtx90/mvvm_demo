@@ -9,30 +9,14 @@
 import UIKit
 
 protocol CountryViewControllerDelegate: class {
-    func countryController(_ controller: CountryViewController, didSelectCountry country: CountryCellViewModel)
+    func countryController(_ controller: CountryViewController, didSelectCountryCode countryCode: String)
 }
 
 final class CountryViewController: UIViewController {
-    var countryCellViewModel: CountryCellViewModel?
+    var viewModel: CountryControllerViewModel?
     weak var delegate: CountryViewControllerDelegate?
     
     @IBOutlet private weak var tableView: UITableView!
-    
-    private var viewModel: CountryControllerViewModel? {
-        didSet {
-            tableView.reloadData()
-            
-            viewModel?.selectedCountry.bindAndFire { [weak self] (_) in
-                guard let country = self?.viewModel?.selectedCountry.value,
-                    let index = self?.viewModel?.index(of: country)
-                else {
-                    return
-                }
-                
-                self?.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .middle)
-            }
-        }
-    }
 
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -46,7 +30,7 @@ final class CountryViewController: UIViewController {
         guard let indexPath = tableView.indexPathForSelectedRow,
             let item = viewModel?.cellViewModel(at: indexPath)
         else { return }
-        delegate?.countryController(self, didSelectCountry: item)
+        delegate?.countryController(self, didSelectCountryCode: item.code)
     }
 
     // MARK: - Private
@@ -64,7 +48,8 @@ final class CountryViewController: UIViewController {
     }
     
     private func setupData() {
-        viewModel = CountryControllerViewModel(country: countryCellViewModel)
+        guard let index = viewModel?.countryIndex else { return}
+        tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .middle)
     }
 }
 

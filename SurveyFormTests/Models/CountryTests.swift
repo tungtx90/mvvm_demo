@@ -25,4 +25,12 @@ class CountryTests: XCTestCase {
         XCTAssert(country.name == name, "Country name should be \(name)")
         XCTAssert(country.code == code, "Country code should be \(code)")
     }
+    
+    func testCountryFound() {
+        XCTAssert(Country.find(code: "us") != nil, "Country should be found")
+    }
+    
+    func testCountryNotFound() {
+        XCTAssert(Country.find(code: "abc") == nil, "Country should be not found")
+    }
 }

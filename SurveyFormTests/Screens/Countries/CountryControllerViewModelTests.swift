@@ -10,35 +10,25 @@ import XCTest
 @testable import SurveyForm
 
 class CountryControllerViewModelTests: XCTestCase {
-    func testSelectedCountry() {
-        let cellViewModel = CountryCellViewModel(country:  Country(name: "country_name", code: "country_code"))
-        let viewModel = CountryControllerViewModel(country: cellViewModel)
+    func testSelectedCountryCode() {
+        let countryCode = "country_code"
+        let viewModel = CountryControllerViewModel(countryCode: countryCode)
         
-        XCTAssert(viewModel.selectedCountry.value == cellViewModel, "selectedCountry should be \(cellViewModel) ")
-    }
-    
-    func testNilSelectedCountry() {
-        let viewModel = CountryControllerViewModel(country: nil)
-        
-        XCTAssert(viewModel.selectedCountry.value == nil, "selectedCountry should be nil")
+        XCTAssert(viewModel.countryCode.value == countryCode, "countryCode should be \(countryCode) ")
     }
     
     func testNotFoundItem() {
-        let item = CountryCellViewModel(country: Country(name: "abc", code: "aaa"))
-        let index = CountryControllerViewModel(country: nil).index(of: item)
-        
-        XCTAssert(index == nil, "Index should be nil")
+        let item = CountryControllerViewModel(countryCode: "abc")
+        XCTAssert(item.countryIndex == nil, "Index should be nil")
     }
     
     func testItemFound() {
-        let item = CountryCellViewModel(country: Country(name: "US", code: "us"))
-        let index = CountryControllerViewModel(country: nil).index(of: item)
-        
-        XCTAssert(index != nil, "Index should be not nil")
+        let item = CountryControllerViewModel(countryCode: "us")
+        XCTAssert(item.countryIndex != nil, "Index should be not nil")
     }
     
     func testTableViewModel() {
-        let viewModel = CountryControllerViewModel(country: nil)
+        let viewModel = CountryControllerViewModel(countryCode: "us")
         XCTAssert(viewModel.numberOfSection == 1, "numberOfSection should be 1")
         XCTAssert(viewModel.numberOfRow(inSection: 0) == 3 , "numberOfRow in section 0 should be 3")
         

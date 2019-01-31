@@ -12,8 +12,8 @@ import XCTest
 class NewsControllerViewModelTests: XCTestCase {
     func testWithDefaultCountry() {
         let viewModel = NewsControllerViewModel()
-        let defaultValue = CountryCellViewModel(country: Country.default)
-        XCTAssert(viewModel.country.value == defaultValue, "default country should be US")
+        let defaultValue = Country.default
+        XCTAssert(viewModel.countryCode.value == defaultValue.code, "default country should be US")
     }
     
     func testCellViewModelNotFound() {
@@ -41,7 +41,7 @@ class NewsControllerViewModelTests: XCTestCase {
     
     func testEmptyNews() {
         let viewModel = NewsControllerViewModel()
-        viewModel.country.value = CountryCellViewModel(country: Country(name: "abc", code: "aaa"))
+        viewModel.countryCode.value = "aaa"
         let expectation = XCTestExpectation(description: "testEmptyNews")
         
         viewModel.getTopHeadlines { (response) in

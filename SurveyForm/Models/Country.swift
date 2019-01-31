@@ -13,4 +13,8 @@ struct Country {
     let code: String
     
     static let `default` = Country(name: "US", code: "us")
+    
+    static func find(code: String) -> Country? {
+        return Constant.countries.first { $0.code == code }
+    }
 }

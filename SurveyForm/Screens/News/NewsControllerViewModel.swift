@@ -9,8 +9,10 @@
 import Foundation
 
 final class NewsControllerViewModel {
+    var countryCode = Dynamic(Country.default.code)
+    var isLoading = Dynamic(false)
+    
     private var newCellViewModels: [NewCellViewModel] = []
-    var country = Dynamic<CountryCellViewModel?>(CountryCellViewModel(country: Country.default))
 }
 
 // MARK: - TableViewModel
@@ -32,11 +34,9 @@ extension NewsControllerViewModel: TableViewModel {
 // MARK: - API
 extension NewsControllerViewModel {
     func getTopHeadlines(completion: @escaping (APIManager.Response<Bool>) -> Void) {
-        guard let country = country.value?.code else {
-            completion(APIManager.Response.failure(error: NSError.error(message: "Country not found!")))
-            return
-        }
-        HeadlinesManager.getTop(country: country) { (response) in
+        isLoading.value = true
+        HeadlinesManager.getTop(country: countryCode.value) { (response) in
+            self.isLoading.value = false
             switch response {
             case .failure(let error):
                 DispatchQueue.main.async {

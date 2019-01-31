@@ -19,4 +19,9 @@ struct Constant {
     static let environment: Environment = .staging
     static let apiKey = "cbcbd6968df941c8b2e00f4b4da9c48b"
     static let timeoutInterval: TimeInterval = 5.0
+    static let countries: [Country] = [
+        Country.default,
+        Country(name: "Germany", code: "de"),
+        Country(name: "Japan", code: "jp")
+    ]
 }

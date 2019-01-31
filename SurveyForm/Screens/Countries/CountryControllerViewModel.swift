@@ -9,20 +9,15 @@
 import Foundation
 
 struct CountryControllerViewModel {
-    private let countries: [CountryCellViewModel] = [
-        Country.default,
-        Country(name: "Germany", code: "de"),
-        Country(name: "Japan", code: "jp")
-    ].map { CountryCellViewModel(country: $0) }
-    
-    var selectedCountry: Dynamic<CountryCellViewModel?>
-    
-    init(country: CountryCellViewModel?) {
-        selectedCountry = Dynamic(country)
+    private let countries: [CountryCellViewModel] = Constant.countries.map { CountryCellViewModel(country: $0) }
+
+    var countryCode: Dynamic<String>
+    var countryIndex: Int? {
+        return countries.firstIndex { $0.code == countryCode.value }
     }
     
-    func index(of item: CountryCellViewModel) -> Int? {
-        return countries.firstIndex { item.name.value == $0.name.value }
+    init(countryCode: String) {
+        self.countryCode = Dynamic(countryCode)
     }
 }
 

@@ -16,20 +16,14 @@ final class NewsViewController: UIViewController {
         case toCountry = "NewToCountrySegue"
     }
     
-    private var viewModel: NewsControllerViewModel? {
-        didSet {
-            viewModel?.country.bindAndFire { [weak self] (_) in
-                self?.setupNavigationBar()
-                self?.fetchNews()
-            }
-        }
-    }
+    private let viewModel = NewsControllerViewModel()
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupData()
+        setupBinding()
+        fetchNews()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,10 +33,10 @@ final class NewsViewController: UIViewController {
             guard let detailNewViewController = segue.destination as? DetailNewViewController,
                 let indexPath = tableView.indexPathForSelectedRow
             else { return }
-            detailNewViewController.newCellViewModel = viewModel?.cellViewModel(at: indexPath)
+            detailNewViewController.viewModel = viewModel.cellViewModel(at: indexPath)?.detailNewViewModel
         case .toCountry:
             guard let countryViewController = segue.destination as? CountryViewController else { return }
-            countryViewController.countryCellViewModel = viewModel?.country.value
+            countryViewController.viewModel = CountryControllerViewModel(countryCode: viewModel.countryCode.value)
             countryViewController.delegate = self
         }
     }
@@ -64,22 +58,31 @@ final class NewsViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        guard let countryInfo = viewModel?.country.value else { return }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: countryInfo.name.value, style: .plain, target: self, action: #selector(countryItemTapped))
+        guard let country = Country.find(code: viewModel.countryCode.value) else { return }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: country.name, style: .plain, target: self, action: #selector(countryItemTapped))
     }
     
-    private func setupData() {
-        viewModel = NewsControllerViewModel()
+    private func setupBinding() {
+        viewModel.countryCode.bind { [weak self] (_) in
+            self?.setupNavigationBar()
+            self?.fetchNews()
+        }
+        viewModel.isLoading.bind { [weak self] (isLoading) in
+            guard let strongSelf = self else { return }
+            if !isLoading {
+                DispatchQueue.main.async {
+                    strongSelf.tableView.reloadData()
+                }
+            }
+        }
     }
     
     private func fetchNews() {
-        viewModel?.getTopHeadlines { [weak self] (result) in
-            guard let strongSelf = self else { return }
+        viewModel.getTopHeadlines { (result) in
             switch result {
             case .failure(let error):
                 print("Error = \(error)")
-            case .success(_):
-                strongSelf.tableView.reloadData()
+            default: return
             }
         }
     }
@@ -88,16 +91,16 @@ final class NewsViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension NewsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel?.numberOfSection ?? 0
+        return viewModel.numberOfSection
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRow(inSection: section) ?? 0
+        return viewModel.numberOfRow(inSection: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? NewCell,
-            let cellViewModel = viewModel?.cellViewModel(at: indexPath)
+            let cellViewModel = viewModel.cellViewModel(at: indexPath)
         else {
             return UITableViewCell()
         }
@@ -116,8 +119,8 @@ extension NewsViewController: UITableViewDelegate {
 
 // MARK: - CountryControllerDelegate
 extension NewsViewController: CountryViewControllerDelegate {
-    func countryController(_ controller: CountryViewController, didSelectCountry country: CountryCellViewModel) {
+    func countryController(_ controller: CountryViewController, didSelectCountryCode countryCode: String) {
         navigationController?.popViewController(animated: true)
-        viewModel?.country.value = country
+        viewModel.countryCode.value = countryCode
     }
 }
