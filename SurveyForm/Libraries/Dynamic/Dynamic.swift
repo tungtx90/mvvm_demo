@@ -30,4 +30,8 @@ final class Dynamic<T> {
         listeners.append(listener)
         listener(value)
     }
+    
+    func clearListeners() {
+        listeners.removeAll()
+    }
 }
