@@ -32,9 +32,9 @@ class CountryControllerViewModelTests: XCTestCase {
         XCTAssert(viewModel.numberOfSection == 1, "numberOfSection should be 1")
         XCTAssert(viewModel.numberOfRow(inSection: 0) == 3 , "numberOfRow in section 0 should be 3")
         
-        let cellViewModel = viewModel.cellViewModel(at: IndexPath(row: 1, section: 0))
+        let cellViewModel = viewModel.itemViewModel(at: IndexPath(row: 1, section: 0))
         XCTAssert(cellViewModel?.code == "de" && cellViewModel?.name.value == "Germany", "cellViewModel should be Germany")
         
-        XCTAssert(viewModel.cellViewModel(at: IndexPath(row: 6, section: 0)) == nil, "cellViewModel should be nil")
+        XCTAssert(viewModel.itemViewModel(at: IndexPath(row: 6, section: 0)) == nil, "cellViewModel should be nil")
     }
 }

@@ -9,8 +9,13 @@
 import Foundation
 
 final class NewsControllerViewModel {
+    let feedbackItemTitle = "Feedback"
+    
     var countryCode = Dynamic(Country.default.code)
     var isLoading = Dynamic(false)
+    var countryName: String? {
+        return Country.find(code: countryCode.value)?.name
+    }
     
     private var newCellViewModels: [NewCellViewModel] = []
 }
@@ -25,7 +30,7 @@ extension NewsControllerViewModel: TableViewModel {
         return newCellViewModels.count
     }
     
-    func cellViewModel(at indexPath: IndexPath) -> NewCellViewModel? {
+    func itemViewModel(at indexPath: IndexPath) -> NewCellViewModel? {
         guard (0..<newCellViewModels.count).contains(indexPath.row) else { return nil }
         return newCellViewModels[indexPath.row]
     }

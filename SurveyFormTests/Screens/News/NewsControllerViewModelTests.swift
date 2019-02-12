@@ -16,9 +16,14 @@ class NewsControllerViewModelTests: XCTestCase {
         XCTAssert(viewModel.countryCode.value == defaultValue.code, "default country should be US")
     }
     
+    func testFeedbackItemTitle() {
+        let viewModel = NewsControllerViewModel()
+        XCTAssert(viewModel.feedbackItemTitle == "Feedback", "feedback title should be Feedback")
+    }
+    
     func testCellViewModelNotFound() {
         let viewModel = NewsControllerViewModel()
-        XCTAssert(viewModel.cellViewModel(at: IndexPath(row: 0, section: 0)) == nil, "cellViewModel should be nil")
+        XCTAssert(viewModel.itemViewModel(at: IndexPath(row: 0, section: 0)) == nil, "cellViewModel should be nil")
     }
     
     func testAvailableNews() {

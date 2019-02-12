@@ -28,7 +28,7 @@ final class CountryViewController: UIViewController {
     // MARK: - Actions
     @objc private func doneItemTapped() {
         guard let indexPath = tableView.indexPathForSelectedRow,
-            let item = viewModel?.cellViewModel(at: indexPath)
+            let item = viewModel?.itemViewModel(at: indexPath)
         else { return }
         delegate?.countryController(self, didSelectCountryCode: item.code)
     }
@@ -65,7 +65,7 @@ extension CountryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell", for: indexPath) as? CountryTableViewCell,
-            let countryCellViewModel = viewModel?.cellViewModel(at: indexPath)
+            let countryCellViewModel = viewModel?.itemViewModel(at: indexPath)
         else {
             return UITableViewCell()
         }

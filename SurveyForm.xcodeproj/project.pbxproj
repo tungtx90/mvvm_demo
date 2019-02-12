@@ -37,6 +37,19 @@
 		DD5C817321F5A519000C7C9F /* CountryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C817221F5A519000C7C9F /* CountryCellViewModel.swift */; };
 		DD5C817521F5A565000C7C9F /* CountryControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C817421F5A565000C7C9F /* CountryControllerViewModel.swift */; };
 		DD5C817721F5A686000C7C9F /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C817621F5A686000C7C9F /* CountryTableViewCell.swift */; };
+		DD692B6E2211C64B00CC4324 /* FormRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B6D2211C64B00CC4324 /* FormRenderable.swift */; };
+		DD692B712211D93F00CC4324 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B702211D93F00CC4324 /* FeedbackViewController.swift */; };
+		DD692B742211DB1700CC4324 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B732211DB1700CC4324 /* FormTests.swift */; };
+		DD692B76221251C100CC4324 /* FormRowRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B75221251C100CC4324 /* FormRowRenderable.swift */; };
+		DD692B78221254EB00CC4324 /* FormSectionRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B77221254EB00CC4324 /* FormSectionRenderable.swift */; };
+		DD692B7C22125C4B00CC4324 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B7B22125C4B00CC4324 /* Form.swift */; };
+		DD692B7E221277DD00CC4324 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B7D221277DD00CC4324 /* FeedbackViewModel.swift */; };
+		DD692B8622127E1800CC4324 /* FeedbackViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B8522127E1800CC4324 /* FeedbackViewModelTests.swift */; };
+		DD692B8A22128D0A00CC4324 /* FeedbackTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B8922128D0A00CC4324 /* FeedbackTextFieldCell.swift */; };
+		DD692B8C22128D3100CC4324 /* FeedbackTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B8B22128D3100CC4324 /* FeedbackTextViewCell.swift */; };
+		DD692B8E221294D400CC4324 /* FeedbackTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD692B8D221294D400CC4324 /* FeedbackTextViewCell.xib */; };
+		DD692B90221294F400CC4324 /* FeedbackTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD692B8F221294F400CC4324 /* FeedbackTextFieldCell.xib */; };
+		DD692B922212979900CC4324 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD692B912212979900CC4324 /* ReuseIdentifier.swift */; };
 		DD8D998021F843A700DBB5EA /* CountryCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D997F21F843A700DBB5EA /* CountryCellViewModelTests.swift */; };
 		DD8D998221F845C000DBB5EA /* CountryControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D998121F845C000DBB5EA /* CountryControllerViewModelTests.swift */; };
 		DD8D998521F84D8100DBB5EA /* DetailNewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D998421F84D8100DBB5EA /* DetailNewViewModelTests.swift */; };
@@ -93,6 +106,19 @@
 		DD5C817221F5A519000C7C9F /* CountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellViewModel.swift; sourceTree = "<group>"; };
 		DD5C817421F5A565000C7C9F /* CountryControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryControllerViewModel.swift; sourceTree = "<group>"; };
 		DD5C817621F5A686000C7C9F /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
+		DD692B6D2211C64B00CC4324 /* FormRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRenderable.swift; sourceTree = "<group>"; };
+		DD692B702211D93F00CC4324 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		DD692B732211DB1700CC4324 /* FormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTests.swift; sourceTree = "<group>"; };
+		DD692B75221251C100CC4324 /* FormRowRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormRowRenderable.swift; sourceTree = "<group>"; };
+		DD692B77221254EB00CC4324 /* FormSectionRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSectionRenderable.swift; sourceTree = "<group>"; };
+		DD692B7B22125C4B00CC4324 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
+		DD692B7D221277DD00CC4324 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
+		DD692B8522127E1800CC4324 /* FeedbackViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModelTests.swift; sourceTree = "<group>"; };
+		DD692B8922128D0A00CC4324 /* FeedbackTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTextFieldCell.swift; sourceTree = "<group>"; };
+		DD692B8B22128D3100CC4324 /* FeedbackTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTextViewCell.swift; sourceTree = "<group>"; };
+		DD692B8D221294D400CC4324 /* FeedbackTextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackTextViewCell.xib; sourceTree = "<group>"; };
+		DD692B8F221294F400CC4324 /* FeedbackTextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackTextFieldCell.xib; sourceTree = "<group>"; };
+		DD692B912212979900CC4324 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		DD8D997F21F843A700DBB5EA /* CountryCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellViewModelTests.swift; sourceTree = "<group>"; };
 		DD8D998121F845C000DBB5EA /* CountryControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryControllerViewModelTests.swift; sourceTree = "<group>"; };
 		DD8D998421F84D8100DBB5EA /* DetailNewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewViewModelTests.swift; sourceTree = "<group>"; };
@@ -196,6 +222,7 @@
 		DD13BE0C21EC404E0017EE0A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DD692B6F2211D92100CC4324 /* Feedback */,
 				DD5C816C21F5A438000C7C9F /* Countries */,
 				DDC846AE21EF0D69004C1642 /* Detail New */,
 				DD13BE1821EC6F500017EE0A /* News */,
@@ -223,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				DD5C816821F585A5000C7C9F /* TableViewModel.swift */,
+				DD692B912212979900CC4324 /* ReuseIdentifier.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -230,6 +258,7 @@
 		DD13BE1221EC42F20017EE0A /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DD692B6C2211C63600CC4324 /* Form */,
 				DD13BE1B21EC70850017EE0A /* Network */,
 				DD13BE1321EC43070017EE0A /* Dynamic */,
 			);
@@ -331,6 +360,7 @@
 		DD3BF89A21F1819000AD2B11 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DD692B8222127DF500CC4324 /* Feedback */,
 				DD8D998621F84ED700DBB5EA /* News */,
 				DD8D998321F84D5200DBB5EA /* Detail New */,
 				DD8D997B21F8432D00DBB5EA /* Countries */,
@@ -351,6 +381,7 @@
 		DD3BF89C21F1828400AD2B11 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DD692B722211DB0500CC4324 /* Form */,
 				DD3BF89D21F1866B00AD2B11 /* Network */,
 				DD3E448E21F6D0DF000D54CF /* Dynamic */,
 			);
@@ -390,6 +421,54 @@
 				DD5C817621F5A686000C7C9F /* CountryTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		DD692B6C2211C63600CC4324 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				DD692B6D2211C64B00CC4324 /* FormRenderable.swift */,
+				DD692B75221251C100CC4324 /* FormRowRenderable.swift */,
+				DD692B77221254EB00CC4324 /* FormSectionRenderable.swift */,
+				DD692B7B22125C4B00CC4324 /* Form.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		DD692B6F2211D92100CC4324 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				DD692B702211D93F00CC4324 /* FeedbackViewController.swift */,
+				DD692B7D221277DD00CC4324 /* FeedbackViewModel.swift */,
+				DD692B7F22127A0200CC4324 /* Cells */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		DD692B722211DB0500CC4324 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				DD692B732211DB1700CC4324 /* FormTests.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		DD692B7F22127A0200CC4324 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DD692B8922128D0A00CC4324 /* FeedbackTextFieldCell.swift */,
+				DD692B8B22128D3100CC4324 /* FeedbackTextViewCell.swift */,
+				DD692B8D221294D400CC4324 /* FeedbackTextViewCell.xib */,
+				DD692B8F221294F400CC4324 /* FeedbackTextFieldCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DD692B8222127DF500CC4324 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				DD692B8522127E1800CC4324 /* FeedbackViewModelTests.swift */,
+			);
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 		DD8D997B21F8432D00DBB5EA /* Countries */ = {
@@ -527,6 +606,8 @@
 			files = (
 				DD13BE0121EC3F320017EE0A /* LaunchScreen.storyboard in Resources */,
 				DD13BDFE21EC3F320017EE0A /* Assets.xcassets in Resources */,
+				DD692B90221294F400CC4324 /* FeedbackTextFieldCell.xib in Resources */,
+				DD692B8E221294D400CC4324 /* FeedbackTextViewCell.xib in Resources */,
 				DD13BDFC21EC3F310017EE0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,9 +629,13 @@
 				DD374A2621EDCAB80044A0C1 /* DateFormatter.swift in Sources */,
 				DD374A1C21ED98F50044A0C1 /* Constant.swift in Sources */,
 				DD374A2D21EDD4100044A0C1 /* NewCellViewModel.swift in Sources */,
+				DD692B712211D93F00CC4324 /* FeedbackViewController.swift in Sources */,
+				DD692B76221251C100CC4324 /* FormRowRenderable.swift in Sources */,
+				DD692B7C22125C4B00CC4324 /* Form.swift in Sources */,
 				DD13BE1721EC4C410017EE0A /* Dynamic.swift in Sources */,
 				DDC846B021EF0DA7004C1642 /* DetailNewViewController.swift in Sources */,
 				DD5C817321F5A519000C7C9F /* CountryCellViewModel.swift in Sources */,
+				DD692B78221254EB00CC4324 /* FormSectionRenderable.swift in Sources */,
 				DD374A1821ED941B0044A0C1 /* New.swift in Sources */,
 				DD374A2021ED9C470044A0C1 /* APIManager.swift in Sources */,
 				DD5C816B21F5A356000C7C9F /* Country.swift in Sources */,
@@ -561,11 +646,16 @@
 				DD374A1E21ED993A0044A0C1 /* StringURL.swift in Sources */,
 				DD374A2421EDB4730044A0C1 /* HeadlinesManager.swift in Sources */,
 				DD5C816E21F5A469000C7C9F /* CountryViewController.swift in Sources */,
+				DD692B8A22128D0A00CC4324 /* FeedbackTextFieldCell.swift in Sources */,
+				DD692B8C22128D3100CC4324 /* FeedbackTextViewCell.swift in Sources */,
 				DD374A1A21ED959D0044A0C1 /* NewSource.swift in Sources */,
+				DD692B922212979900CC4324 /* ReuseIdentifier.swift in Sources */,
+				DD692B6E2211C64B00CC4324 /* FormRenderable.swift in Sources */,
 				DD374A2821EDD20B0044A0C1 /* NewCell.swift in Sources */,
 				DD13BE1D21EC70950017EE0A /* Network.swift in Sources */,
 				DD5C816921F585A5000C7C9F /* TableViewModel.swift in Sources */,
 				DD5C817721F5A686000C7C9F /* CountryTableViewCell.swift in Sources */,
+				DD692B7E221277DD00CC4324 /* FeedbackViewModel.swift in Sources */,
 				DDC846B221EF12FD004C1642 /* DetailNewViewModel.swift in Sources */,
 				DD13BE1A21EC6F710017EE0A /* NewsViewController.swift in Sources */,
 			);
@@ -583,7 +673,9 @@
 				DD8D998521F84D8100DBB5EA /* DetailNewViewModelTests.swift in Sources */,
 				DD3BF89F21F1878A00AD2B11 /* NetworkTests.swift in Sources */,
 				DD3E449621F6EC92000D54CF /* NewTests.swift in Sources */,
+				DD692B8622127E1800CC4324 /* FeedbackViewModelTests.swift in Sources */,
 				DD3E449021F6D102000D54CF /* DynamicTests.swift in Sources */,
+				DD692B742211DB1700CC4324 /* FormTests.swift in Sources */,
 				DD8D998021F843A700DBB5EA /* CountryCellViewModelTests.swift in Sources */,
 				DD8D998221F845C000DBB5EA /* CountryControllerViewModelTests.swift in Sources */,
 				DD8D998921F84EE900DBB5EA /* NewCellViewModelTests.swift in Sources */,

@@ -13,5 +13,12 @@ protocol TableViewModel {
     
     var numberOfSection: Int { get }
     func numberOfRow(inSection section: Int) -> Int
-    func cellViewModel(at indexPath: IndexPath) -> ViewModelType?
+    func itemViewModel(at indexPath: IndexPath) -> ViewModelType?
+    func titleForHeader(inSection section: Int) -> String?
+}
+
+extension TableViewModel {
+    func titleForHeader(inSection section: Int) -> String? {
+        return nil
+    }
 }

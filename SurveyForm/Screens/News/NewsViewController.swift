@@ -14,6 +14,7 @@ final class NewsViewController: UIViewController {
     private enum SegueID: String {
         case toDetailNew = "NewToDetailSegue"
         case toCountry = "NewToCountrySegue"
+        case toFeedback = "NewToFeedbackSegue"
     }
     
     private let viewModel = NewsControllerViewModel()
@@ -33,17 +34,23 @@ final class NewsViewController: UIViewController {
             guard let detailNewViewController = segue.destination as? DetailNewViewController,
                 let indexPath = tableView.indexPathForSelectedRow
             else { return }
-            detailNewViewController.viewModel = viewModel.cellViewModel(at: indexPath)?.detailNewViewModel
+            detailNewViewController.viewModel = viewModel.itemViewModel(at: indexPath)?.detailNewViewModel
         case .toCountry:
             guard let countryViewController = segue.destination as? CountryViewController else { return }
             countryViewController.viewModel = CountryControllerViewModel(countryCode: viewModel.countryCode.value)
             countryViewController.delegate = self
+        case .toFeedback:
+            return
         }
     }
     
     // MARK: - Actions
     @objc private func countryItemTapped() {
         performSegue(withIdentifier: SegueID.toCountry.rawValue, sender: self)
+    }
+    
+    @objc private func feebackItemTapped() {
+        performSegue(withIdentifier: SegueID.toFeedback.rawValue, sender: self)
     }
     
     // MARK: - Private
@@ -58,13 +65,22 @@ final class NewsViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        guard let country = Country.find(code: viewModel.countryCode.value) else { return }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: country.name, style: .plain, target: self, action: #selector(countryItemTapped))
+        setupLeftBarItems()
+        setupRightBarItems()
+    }
+    
+    private func setupLeftBarItems() {
+        guard let countryName = viewModel.countryName else { return }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: countryName, style: .plain, target: self, action: #selector(countryItemTapped))
+    }
+    
+    private func setupRightBarItems() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewModel.feedbackItemTitle, style: .plain, target: self, action: #selector(feebackItemTapped))
     }
     
     private func setupBinding() {
         viewModel.countryCode.bind { [weak self] (_) in
-            self?.setupNavigationBar()
+            self?.setupLeftBarItems()
             self?.fetchNews()
         }
         viewModel.isLoading.bind { [weak self] (isLoading) in
@@ -100,7 +116,7 @@ extension NewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? NewCell,
-            let cellViewModel = viewModel.cellViewModel(at: indexPath)
+            let cellViewModel = viewModel.itemViewModel(at: indexPath)
         else {
             return UITableViewCell()
         }
