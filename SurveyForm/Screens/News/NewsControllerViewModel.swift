@@ -12,10 +12,13 @@ final class NewsControllerViewModel {
     let feedbackItemTitle = "Feedback"
     
     var countryCode = Dynamic(Country.default.code)
-    var isLoading = Dynamic(false)
     var countryName: String? {
         return Country.find(code: countryCode.value)?.name
     }
+    var showLoading: (() -> Void)?
+    var hideLoading: (() -> Void)?
+    var finishLoading: (() -> Void)?
+    var showError: ((NSError) -> Void)?
     
     private var newCellViewModels: [NewCellViewModel] = []
 }
@@ -38,19 +41,20 @@ extension NewsControllerViewModel: TableViewModel {
 
 // MARK: - API
 extension NewsControllerViewModel {
-    func getTopHeadlines(completion: @escaping (APIManager.Response<Bool>) -> Void) {
-        isLoading.value = true
+    func getTopHeadlines() {
+        showLoading?()
         HeadlinesManager.getTop(country: countryCode.value) { (response) in
-            self.isLoading.value = false
+            self.hideLoading?()
             switch response {
             case .failure(let error):
                 DispatchQueue.main.async {
-                    completion(APIManager.Response<Bool>.failure(error: error))
+                    self.showError?(error)
+                    self.finishLoading?()
                 }
             case .success(let value):
                 self.newCellViewModels = value.map { NewCellViewModel(new: $0) }
                 DispatchQueue.main.async {
-                    completion(APIManager.Response<Bool>.success(value: true))
+                    self.finishLoading?()
                 }
             }
         }

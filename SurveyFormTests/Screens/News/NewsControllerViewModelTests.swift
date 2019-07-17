@@ -30,16 +30,16 @@ class NewsControllerViewModelTests: XCTestCase {
         let viewModel = NewsControllerViewModel()
         let expectation = XCTestExpectation(description: "testAvailableNews")
         
-        viewModel.getTopHeadlines { (response) in
-            switch response {
-            case .failure(_):
-                XCTFail("Request should be successful")
-            case .success(_):
-                XCTAssert(viewModel.numberOfSection == 1, "numberOfSection should be 1")
-                XCTAssert(viewModel.numberOfRow(inSection: 1) > 0, "number of row in section 1 should be greater than 0")
-            }
+        viewModel.showError = { (_) in
+            XCTFail("Request should be successful")
             expectation.fulfill()
         }
+        viewModel.finishLoading = {
+            XCTAssert(viewModel.numberOfSection == 1, "numberOfSection should be 1")
+            XCTAssert(viewModel.numberOfRow(inSection: 1) > 0, "number of row in section 1 should be greater than 0")
+            expectation.fulfill()
+        }
+        viewModel.getTopHeadlines()
         
         wait(for: [expectation], timeout: Constant.timeoutInterval)
     }
@@ -49,16 +49,16 @@ class NewsControllerViewModelTests: XCTestCase {
         viewModel.countryCode.value = "aaa"
         let expectation = XCTestExpectation(description: "testEmptyNews")
         
-        viewModel.getTopHeadlines { (response) in
-            switch response {
-            case .failure(_):
-                XCTFail("Request should be successful")
-            case .success(_):
-                XCTAssert(viewModel.numberOfSection == 1, "numberOfSection should be 1")
-                XCTAssert(viewModel.numberOfRow(inSection: 1) == 0, "number of row in section 1 should be 0")
-            }
+        viewModel.showError = { (_) in
+            XCTFail("Request should be successful")
             expectation.fulfill()
         }
+        viewModel.finishLoading = {
+            XCTAssert(viewModel.numberOfSection == 1, "numberOfSection should be 1")
+            XCTAssert(viewModel.numberOfRow(inSection: 1) == 0, "number of row in section 1 should be 0")
+            expectation.fulfill()
+        }
+        viewModel.getTopHeadlines()
         
         wait(for: [expectation], timeout: Constant.timeoutInterval)
     }

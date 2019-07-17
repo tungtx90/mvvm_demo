@@ -83,24 +83,19 @@ final class NewsViewController: UIViewController {
             self?.setupLeftBarItems()
             self?.fetchNews()
         }
-        viewModel.isLoading.bind { [weak self] (isLoading) in
-            guard let strongSelf = self else { return }
-            if !isLoading {
-                DispatchQueue.main.async {
-                    strongSelf.tableView.reloadData()
-                }
-            }
+
+        viewModel.showError = { (error) in
+            print("Error = \(error)")
+        }
+        
+        viewModel.finishLoading = { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
         }
     }
     
     private func fetchNews() {
-        viewModel.getTopHeadlines { (result) in
-            switch result {
-            case .failure(let error):
-                print("Error = \(error)")
-            default: return
-            }
-        }
+        viewModel.getTopHeadlines()
     }
 }
 
